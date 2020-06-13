@@ -1,0 +1,31 @@
+.widget-grid {
+	display: grid;
+	grid-template-rows: 150px 150px;
+	grid-template-columns: 33.3% 33.3% 33.3%;
+	grid-gap: 1px;
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+}
+
+.widget-grid>div {
+	text-align: center;
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+}
+
+.widget-title {
+	grid-column: 1/2;
+}
+
+.widget-preview {
+	grid-column: 2/span 2;
+}
+
+.widget-image {
+	grid-column: 1 / span 3;
+}
+
+.image {
+	width: 100%;
+	max-height: 100%;
+}
