@@ -1,28 +1,48 @@
 <?php
-// get the last product of category:
-$args = array( 
-    'status' => 'publish',
- );
 
-$products = get_posts( $args );
-echo var_dump($products);
+
+
+// get the last product of category:
+
+
+
+
 
 // frontend div
 function wpb_demo_shortcode() {
-    $t = 'h';
-    // Things that you want to do.
-    $message =
+    
+    
+    $args = array(
+    'post_type' => 'post',
+    'post_status' => 'publish',
+    'category_name' => 'check',
+    'posts_per_page' => 1,
+);
+$arr_posts = new WP_Query( $args );
+ 
+if ( $arr_posts->have_posts() ) :
+ 
+    while ( $arr_posts->have_posts() ) :
+        $arr_posts->the_post();
+        $message =
     '<div class="widget-grid">'.
     '<div class="widget-title">'.
-    'title'.
+    get_the_title().
     '</div>'.
     '<div class="widget-preview">'.
-    'preview'.
+    get_the_content().
     '</div>'.
     '<div class="widget-image">'.
-    '<image class="image" src="http://localhost/store/wp-content/uploads/2020/06/img-200x300.jpg">'.
+    get_the_post_thumbnail($post_id, 'post_thumbnail', array( 'class' => 'image' )).
     '</div>'.
     '</div>' ;
+    endwhile;
+endif;
+
+
+
+    // Things that you want to do.
+
 
     // Output needs to be return
     return $message;
